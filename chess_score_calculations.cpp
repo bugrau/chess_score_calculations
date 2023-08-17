@@ -5,6 +5,7 @@
 #include "FileReader.hpp"
 #include "Pieces.hpp"
 #include "ChessBoard.hpp"
+#include "LegalMoveGenerator.hpp"
 
 int main() {
 
@@ -29,6 +30,14 @@ int main() {
 
     ChessBoard chessBoard(array);
     chessBoard.printBoard();
+    
+    std::cout<<"---------------------\n";
+
+    LegalMoveGenerator legalMoveGenerator(chessBoard);
+    legalMoveGenerator.generateCapturingMoves();
+
+    Piece* king = chessBoard.getPieceAt(3, 5);
+    auto capMoves = king->getCapturingMoves(3, 5);
 
     return 0;
 }

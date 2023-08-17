@@ -37,6 +37,16 @@ public:
         }
     }
 
+    Piece* getPieceAt(int row, int col) const {
+        if( (0 <= row && row < 8) && (0 <= col && col < 8) ) {
+            return this->board[row][col];
+        }
+        else {
+            return nullptr;
+        }
+
+    }
+
 private:
     void initializeBoard(const std::string inputBoard[][8]) {
         for (int i = 0; i < 8; ++i) {
