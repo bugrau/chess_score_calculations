@@ -32,6 +32,9 @@
     <ClInclude Include="ChessBoard.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="LegalMoveGenerator.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\personal\CS-Tech\Applicant Assesment Test_4_EK_AtFil\Applicant Assesment Test_4_EK_AtFil\board1.txt">

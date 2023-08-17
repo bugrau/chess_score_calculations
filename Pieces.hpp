@@ -2,6 +2,8 @@
 #define PIECES_HPP
 
 #include <iostream>
+#include <vector>
+#include <utility> // For std::pair
 
 class Piece {
 public:
@@ -10,8 +12,8 @@ public:
 
     virtual void print() const = 0;
 
-protected:
     bool isWhite;
+
 };
 
 class King : public Piece {
@@ -66,6 +68,48 @@ public:
     void print() const override {
         std::cout << (isWhite ? "pb" : "ps") << " ";
     }
+
+    //std::vector<std::pair<int, int>> getLegalMoves(int row, int col, const ChessBoard& chessBoard) const;
+
+private:
+    bool isValidSquare(int row, int col) const {
+        return row >= 0 && row < 8 && col >= 0 && col < 8;
+    }
 };
+
+/*std::vector<std::pair<int, int>> Pawn::getLegalMoves(int row, int col, const ChessBoard& chessBoard) const {
+    std::vector<std::pair<int, int>> legalMoves;
+
+    int forwardStep = (isWhite ? -1 : 1);
+
+    int nextRow = row + forwardStep;
+
+    if (isValidSquare(nextRow, col) && chessBoard.isEmpty(nextRow, col)) {
+        legalMoves.emplace_back(nextRow, col);
+    }
+
+    if ((isWhite && row == 6) || (!isWhite && row == 1)) {
+        int doubleStepRow = row + 2 * forwardStep;
+        if (isValidSquare(doubleStepRow, col) && chessBoard.isEmpty(doubleStepRow, col) && chessBoard.isEmpty(nextRow, col)) {
+            legalMoves.emplace_back(doubleStepRow, col);
+        }
+    }
+
+    int leftDiagonal = col - 1;
+    int rightDiagonal = col + 1;
+
+    if (isValidSquare(nextRow, leftDiagonal) && chessBoard.isOccupiedByOpponent(nextRow, leftDiagonal, isWhite)) {
+        legalMoves.emplace_back(nextRow, leftDiagonal);
+    }
+
+    if (isValidSquare(nextRow, rightDiagonal) && chessBoard.isOccupiedByOpponent(nextRow, rightDiagonal, isWhite)) {
+        legalMoves.emplace_back(nextRow, rightDiagonal);
+    }
+
+    return legalMoves;
+}
+*/
+
+
 
 #endif // PIECES_HPP

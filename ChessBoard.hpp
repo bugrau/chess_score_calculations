@@ -2,11 +2,25 @@
 #define CHESSBOARD_HPP
 
 #include "Pieces.hpp"
+#include <string>
 
 class ChessBoard {
 public:
     ChessBoard(const std::string inputBoard[][8]) {
         initializeBoard(inputBoard);
+    }
+
+    bool isEmpty(int row, int col) const {
+        return board[row][col] == nullptr;
+    }
+
+    bool isOccupiedByOpponent(int row, int col, bool currentPlayerIsWhite) const {
+        if (row < 0 || row >= 8 || col < 0 || col >= 8) {
+            return false; // Out of bounds
+        }
+
+        Piece* piece = board[row][col];
+        return piece != nullptr && piece->isWhite != currentPlayerIsWhite;
     }
 
     void printBoard() const {
