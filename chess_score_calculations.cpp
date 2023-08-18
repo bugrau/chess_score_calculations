@@ -16,7 +16,7 @@ int main() {
 
     std::string array[rows][cols];  // Define an 8x8 array of strings
 
-    FileReader fileReader("C:/Users/bugra/Desktop/my projects/chess_score_calculations/board2.txt");
+    FileReader fileReader("C:/Users/bugra/Desktop/my projects/chess_score_calculations/board3.txt");
     if (!fileReader.openFile()) {
         std::cout << "Unable to open the file." << std::endl;
         return 1;
