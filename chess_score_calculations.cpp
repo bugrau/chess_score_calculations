@@ -1,6 +1,7 @@
 // chess_score_calculations.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
+#include <atomic>
 #include <iostream>
 #include "FileReader.hpp"
 #include "Pieces.hpp"
@@ -15,7 +16,7 @@ int main() {
 
     std::string array[rows][cols];  // Define an 8x8 array of strings
 
-    FileReader fileReader("C:/Users/bugra/Desktop/my projects/chess_score_calculations/board1.txt");  // Replace with the actual file path
+    FileReader fileReader("C:/Users/bugra/Desktop/my projects/chess_score_calculations/board2.txt");
     if (!fileReader.openFile()) {
         std::cout << "Unable to open the file." << std::endl;
         return 1;
@@ -30,15 +31,18 @@ int main() {
 
     ChessBoard chessBoard(array);
     chessBoard.printBoard();
-    
-    std::cout<<"---------------------\n";
+
+    std::cout << "---------------------\n";
 
     LegalMoveGenerator legalMoveGenerator(chessBoard);
-    legalMoveGenerator.generateCapturingMoves();
+    //auto res = legalMoveGenerator.generateCapturingMoves();
+    legalMoveGenerator.setPiecesUnderThreat();
 
-    Piece* king = chessBoard.getPieceAt(3, 5);
-    auto capMoves = king->getCapturingMoves(3, 5);
+    auto whiteScore = chessBoard.getWhiteScore();
+    std::cout << "White score : " << whiteScore << "\n";
+
+    auto blackScore = chessBoard.getBlackScore();
+    std::cout << "Black score : " << blackScore << "\n";
 
     return 0;
 }
-

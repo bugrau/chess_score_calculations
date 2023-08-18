@@ -37,8 +37,38 @@ public:
         }
     }
 
+    float getWhiteScore() {
+        float score = 0.0;
+        for (int i = 0; i < 8; ++i) {
+            for (int j = 0; j < 8; ++j) {
+                if (board[i][j] == nullptr || !board[i][j]->isWhite) {
+                    continue;
+                }
+                else {
+                    score += board[i][j]->getScore();
+                }
+            }
+        }
+        return score;
+    }
+
+    float getBlackScore() {
+        float score = 0.0;
+        for (int i = 0; i < 8; ++i) {
+            for (int j = 0; j < 8; ++j) {
+                if (board[i][j] == nullptr || board[i][j]->isWhite) {
+                    continue;
+                }
+                else {
+                    score += board[i][j]->getScore();
+                }
+            }
+        }
+        return score;
+    }
+
     Piece* getPieceAt(int row, int col) const {
-        if( (0 <= row && row < 8) && (0 <= col && col < 8) ) {
+        if ((0 <= row && row < 8) && (0 <= col && col < 8)) {
             return this->board[row][col];
         }
         else {
